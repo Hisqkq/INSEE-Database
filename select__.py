@@ -1,28 +1,20 @@
 import psycopg2
 import psycopg2.extras
-import pandas as pd
+from db_connection import connect
 
-USERNAME="postgres"
-PASS="1234"
+conn = connect()
+cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
 
-try:
-    conn = psycopg2.connect(host="localhost", dbname="db_projet", user=USERNAME, password=PASS)
-except Exception as e :
-    exit("Connexion impossible à la base de données: " + str(e))
-
-print('Connecté à la base de données')
-cur = conn.cursor()
-
-slect_query = """
-SELECT * FROM chef_lieu_region;
+select_query = """
+SELECT * FROM chef_lieu_departement;
 """
 
-cur.execute(slect_query)
+cur.execute(select_query)
 
 rows = cur.fetchall()
 
 for row in rows:
-    print(row)
+    print(row['id_departement'], row['id_chef_lieu'])
     
 conn.commit()
 
