@@ -62,12 +62,13 @@ create_table_queries = [
     """,
     """
     CREATE TABLE statistiques_population (
-        id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
         codgeo VARCHAR(5),
         annee INT,
-        type_statistique VARCHAR(20),
-        valeur NUMERIC,
-        FOREIGN KEY (codgeo) REFERENCES commune(id_commune)
+        annee2 INT,
+        type_statistique VARCHAR(50),
+        valeur FLOAT CONSTRAINT val_pos CHECK ( valeur >= 0 ),
+        FOREIGN KEY (codgeo) REFERENCES commune(id_commune),
+        PRIMARY KEY (codgeo, annee, type_statistique)
     );
     """
 ]

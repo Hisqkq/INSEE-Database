@@ -36,7 +36,7 @@ insert_dataframe_into_table(df_departement_to_insert, 'departement', ['id_depart
 
 # Commune
 df_commune = pd.read_csv('data/CDR/v_commune_2023.csv', sep=',', dtype={'TYPECOM': str})
-df_commune = df_commune[df_commune['TYPECOM'] == 'COM']
+df_commune = df_commune[df_commune['TYPECOM'].isin(['COM', 'ARM'])]
 pop_data = pd.read_csv('data/statistiques/population/base-cc-serie-historique-2020.csv', sep=';', dtype={'CODGEO': str})
 superficie = pop_data[['CODGEO', 'SUPERF']]
 df_commune = df_commune.merge(superficie, left_on='COM', right_on='CODGEO')
