@@ -9,12 +9,10 @@ def convert_to_int(value):
     else:
         return int(value)
 
-
-
 def insert_dataframe_into_table(df, table_name, columns):
     buffer = io.StringIO()
     df['annee'] = df['annee'].astype(str).astype(int)
-    df = df[columns]  # Ajoutez cette ligne pour réorganiser les colonnes
+    df = df[columns] 
     df.to_csv(buffer, index=False, header=False)
     buffer.seek(0)
 
