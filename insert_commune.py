@@ -1,22 +1,5 @@
 import pandas as pd
-import io
-from db_connection import connect
-
-conn = connect()
-cur = conn.cursor()
-
-def insert_dataframe_into_table(df, table_name, columns):
-    buffer = io.StringIO()
-    df.to_csv(buffer, index=False, header=False)
-    buffer.seek(0)
-
-    copy_query = f"""
-    COPY {table_name} ({', '.join(columns)}) FROM STDIN WITH (FORMAT CSV);
-    """
-
-    cur.copy_expert(copy_query, buffer)
-    conn.commit()
-    print(f"Données insérées dans la table '{table_name}' avec succès")
+from db import insert_dataframe_into_table
 
 def filter_dom_codes(df, column_name):
     dom_codes = ['971', '972', '973', '974', '976']

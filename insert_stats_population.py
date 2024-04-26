@@ -1,32 +1,7 @@
+## OLD VERSION
+
 import pandas as pd
-import io
-from db_connection import connect
-
-def convert_to_int(value):
-    # Si la valeur est NaN, retourner None
-    if value is None or pd.isna(value):
-        return None
-    else:
-        return int(value)
-
-def insert_dataframe_into_table(df, table_name, columns):
-    buffer = io.StringIO()
-    df['annee'] = df['annee'].astype(str).astype(int)
-    df = df[columns] 
-    df.to_csv(buffer, index=False, header=False)
-    buffer.seek(0)
-
-    copy_query = f"""
-    COPY {table_name} ({', '.join(columns)}) FROM STDIN WITH (FORMAT CSV);
-    """
-
-    cur.copy_expert(copy_query, buffer)
-    conn.commit()
-    print(f"Données insérées dans la table '{table_name}' avec succès")
-
-# Connexion à la base de données
-conn = connect()
-cur = conn.cursor()
+from db import insert_dataframe_into_table
 
 # Mappage des colonnes du CSV aux types de statistiques
 stat_mapping = {
@@ -126,9 +101,10 @@ all_stat_df = pd.concat(stat_dfs, ignore_index=True)
 # Convertir les colonnes en types appropriés
 all_stat_df['codgeo'] = all_stat_df['codgeo'].astype(str)
 all_stat_df['annee'] = all_stat_df['annee'].astype(int)
+all_stat_df['annee'] = all_stat_df['annee'].astype(str).astype(int)
 all_stat_df['type_statistique'] = all_stat_df['type_statistique'].astype(str)
 all_stat_df['valeur'] = all_stat_df['valeur'].astype(float)
-all_stat_df['annee2'] = all_stat_df['annee2'].fillna(0).astype(int)
+all_stat_df['annee2'] = all_stat_df['annee2'].fillna(0).astype(int) # Remplacer les valeurs NaN par 0
 
 print(all_stat_df.head())
 

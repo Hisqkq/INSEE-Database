@@ -1,6 +1,6 @@
 import psycopg2
 import psycopg2.extras
-from db_connection import connect
+from db import connect
 
 conn = connect()
 cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
