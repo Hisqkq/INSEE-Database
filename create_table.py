@@ -82,7 +82,7 @@ create_table_queries = [
         typmar2 VARCHAR(3) CHECK (typmar2 IN ('FF', 'HH', 'HF')),
         id_region INT NOT NULL REFERENCES region(id_region),
         id_departement VARCHAR(3) NULL REFERENCES departement(id_departement),
-        mmar CHAR(2) CHECK (mmar IN ('01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12')),
+        mmar CHAR(2) CHECK (mmar IN ('01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', 'AN')),
         nbmar INT CHECK (nbmar >= 0),
         PRIMARY KEY (annee, typmar2, id_region, id_departement, mmar)
     );

@@ -17,7 +17,7 @@ GROUP BY region.nom_region;
 """
 
 select_query = """
-SELECT * from departement;
+SELECT * from statistiques_mariages_age;
 """
 
 cur.execute(select_query)
