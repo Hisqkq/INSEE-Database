@@ -4,7 +4,7 @@ from db import insert_dataframe_into_table
 def filter_stat_mapping(stat_mapping, start_year, end_year):
     return {
         key: value for key, value in stat_mapping.items()
-        if (value[1] >= start_year and value[1] <= end_year) or (len(value) == 3 and value[2] >= start_year and value[2] <= end_year)
+        if (len(value) == 3 and value[2] >= start_year and value[2] <= end_year and value[1] >= start_year and value[1] <= end_year) or (value[1] >= start_year and value[1] <= end_year)
     }
 
 def read_and_prepare_data(filepath, geocode_prefixes=('970', '971', '972', '973', '974', '975', '976', '977', '978')):
@@ -99,4 +99,4 @@ def main(filepath, start_year, end_year):
     print(all_stat_df)
     insert_dataframe_into_table(all_stat_df, 'statistiques_population', ['codgeo', 'valeur', 'annee', 'type_statistique', 'annee2'])
 
-main('data/statistiques/population/base-cc-serie-historique-2020.csv', 2015, 2020)
+main('data/statistiques/population/base-cc-serie-historique-2020.csv', 1980, 1989)
