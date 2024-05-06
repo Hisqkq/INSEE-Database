@@ -20,6 +20,10 @@ select_query = """
 SELECT * from statistiques_mariages_age;
 """
 
+select_query = """
+SELECT * FROM commune_population;
+"""
+
 cur.execute(select_query)
 
 rows = cur.fetchall()

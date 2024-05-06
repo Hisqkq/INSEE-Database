@@ -11,11 +11,11 @@ drop_tables_queries = [
     """DROP TABLE IF EXISTS statistiques_mariages_etat_matrimonial CASCADE;""",
     """DROP TABLE IF EXISTS statistiques_mariages_mensuel CASCADE;""",
     """DROP TABLE IF EXISTS statistiques_mariages_origine CASCADE;""",
-    """DROP TABLE chef_lieu_region;""",
-    """DROP TABLE chef_lieu_departement;""",
-    """DROP TABLE commune;""",
-    """DROP TABLE departement;""",
-    """DROP TABLE region;"""
+    """DROP TABLE IF EXISTS chef_lieu_region CASCADE;""",
+    """DROP TABLE IF EXISTS chef_lieu_departement CASCADE;""",
+    """DROP TABLE IF EXISTS commune CASCADE;""",
+    """DROP TABLE IF EXISTS departement CASCADE;""",
+    """DROP TABLE IF EXISTS region CASCADE;"""
 ]
 
 for query in drop_tables_queries:
