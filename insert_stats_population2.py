@@ -99,4 +99,4 @@ def main(filepath, start_year, end_year):
     print(all_stat_df)
     insert_dataframe_into_table(all_stat_df, 'statistiques_population', ['codgeo', 'valeur', 'annee', 'type_statistique', 'annee2'])
 
-main('data/statistiques/population/base-cc-serie-historique-2020.csv', 2010, 2020)
+main('data/statistiques/population/base-cc-serie-historique-2020.csv', 2015, 2020)

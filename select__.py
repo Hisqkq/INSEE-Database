@@ -1,6 +1,6 @@
 import psycopg2
 import psycopg2.extras
-from db_connection import connect
+from db import connect
 
 conn = connect()
 cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
@@ -16,12 +16,17 @@ WHERE type_statistique = 'Population' AND annee = 2020
 GROUP BY region.nom_region;
 """
 
+select_query = """
+SELECT * from departement;
+"""
+
 cur.execute(select_query)
 
 rows = cur.fetchall()
 
 for row in rows:
-    print('Population de la région', row['nom_region'], 'en 2020:', row['population_region'])
+    print(row)
+    #print('Population de la région', row['nom_region'], 'en 2020:', row['population_region'])
     
 conn.commit()
 
