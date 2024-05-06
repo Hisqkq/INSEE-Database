@@ -6,7 +6,7 @@ conn = connect()
 cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
 
 drop_tables_queries = [
-    """DROP TABLE statistiques_population;""",
+    """DROP TABLE IF EXISTS statistiques_population CASCADE;""",
     """DROP TABLE IF EXISTS statistiques_mariages_age CASCADE;""",
     """DROP TABLE IF EXISTS statistiques_mariages_etat_matrimonial CASCADE;""",
     """DROP TABLE IF EXISTS statistiques_mariages_mensuel CASCADE;""",
