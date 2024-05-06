@@ -20,6 +20,10 @@ select_query = """
 SELECT * from departement;
 """
 
+select_query = """
+SELECT * FROM commune_population;
+"""
+
 cur.execute(select_query)
 
 rows = cur.fetchall()
