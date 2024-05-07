@@ -25,7 +25,8 @@ def generate_statistics_dfs(df, stat_mapping):
     return pd.concat(stat_dfs, ignore_index=True)
 
 
-def fill_tables_population(filepath, start_year, end_year):
+def fill_tables_population(filepath = 'data/statistiques/population/base-cc-serie-historique-2020.csv',
+                           start_year = 2000, end_year = 2020):
     stat_mapping = { # à changer de place (surrement à mettre dans un .ini)
         'P20_POP': ('Population', 2020),
         'P14_POP': ('Population', 2014),

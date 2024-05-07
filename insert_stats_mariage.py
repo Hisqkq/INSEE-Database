@@ -1,5 +1,9 @@
 import pandas as pd
 from db import insert_dataframe_into_table
+import warnings
+warnings.simplefilter(action='ignore', category=pd.errors.SettingWithCopyWarning)
+
+
 
 # Fonction principale pour insérer les données dans la table des mariages
 def insert_marriage_data_age(dep1_path, dep3_path, annee, table_name):
@@ -159,7 +163,7 @@ annee = 2021
 
 #insert_marriage_data_origine(Dep4, Dep5, annee, table_name)
 
-def insert_stats_mariage(annee):
+def fill_tables_mariage(annee = 2021):
     # Insertion des données pour les mariages par âge
     insert_marriage_data_age(Dep1, Dep3, annee, 'statistiques_mariages_age')
     
@@ -171,6 +175,3 @@ def insert_stats_mariage(annee):
     
     # Insertion des données pour les mariages par origine
     insert_marriage_data_origine(Dep4, Dep5, annee, 'statistiques_mariages_origine')
-
-
-insert_stats_mariage(2026)
