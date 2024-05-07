@@ -101,9 +101,8 @@ create_table_queries = [
     """
 ]
 
-for query in create_table_queries:
-    cur.execute(query)
-
-conn.commit()
-
-print("Tables créées avec succès")
+def create_tables(cur, conn):
+    for query in create_table_queries:
+        cur.execute(query)
+    conn.commit()
+    print("Tables créées avec succès")

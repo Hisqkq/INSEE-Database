@@ -25,7 +25,7 @@ def generate_statistics_dfs(df, stat_mapping):
     return pd.concat(stat_dfs, ignore_index=True)
 
 
-def main(filepath, start_year, end_year):
+def fill_tables_population(filepath, start_year, end_year):
     stat_mapping = { # à changer de place (surrement à mettre dans un .ini)
         'P20_POP': ('Population', 2020),
         'P14_POP': ('Population', 2014),
@@ -96,7 +96,4 @@ def main(filepath, start_year, end_year):
     all_stat_df['annee'] = all_stat_df['annee'].astype(str).astype(int)
     all_stat_df['valeur'] = all_stat_df['valeur'].astype(float)
     all_stat_df['annee2'] = all_stat_df['annee2'].fillna(0).astype(int)
-    print(all_stat_df)
     insert_dataframe_into_table(all_stat_df, 'statistiques_population', ['codgeo', 'valeur', 'annee', 'type_statistique', 'annee2'])
-
-main('data/statistiques/population/base-cc-serie-historique-2020.csv', 2000, 2020)
