@@ -18,9 +18,10 @@ drop_tables_queries = [
     """DROP TABLE IF EXISTS region CASCADE;"""
 ]
 
-for query in drop_tables_queries:
-    cur.execute(query)
+def drop_tables(cur, conn):
+    for query in drop_tables_queries:
+        cur.execute(query)
 
-conn.commit()
+    conn.commit()
 
-print("Tables supprimées avec succès")
+    print("Tables supprimées avec succès")
