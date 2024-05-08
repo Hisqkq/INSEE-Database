@@ -1,4 +1,5 @@
 import psycopg2
+import io
 import configparser
 
 def connect():
