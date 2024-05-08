@@ -1,12 +1,12 @@
 import psycopg2
-import io
-
-USERNAME = "postgres"
-PASS = "1234"
+import configparser
 
 def connect():
+    config = configparser.ConfigParser()
+    config.read('config.ini')
+    db_params = config['postgresql']
     try:
-        conn = psycopg2.connect(host="localhost", dbname="db_projet", user=USERNAME, password=PASS)
+        conn = psycopg2.connect(**db_params)
         return conn
     except Exception as e:
         exit("Connexion impossible à la base de données: " + str(e))
