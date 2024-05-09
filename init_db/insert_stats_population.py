@@ -20,7 +20,7 @@ def generate_statistics_dfs(df, stat_mapping):
         stat_df.columns = ['codgeo', 'valeur']
         stat_df['annee'] = int(annee1)
         stat_df['type_statistique'] = stat_type
-        stat_df['annee2'] = int(annee2) if annee2 is not None else None
+        stat_df['annee2'] = int(annee2) if annee2 is not None else annee1
         stat_dfs.append(stat_df)
     return pd.concat(stat_dfs, ignore_index=True)
 

@@ -5,7 +5,6 @@ from db import connect
 conn = connect()
 cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
 
-# Nombre de population par region en 2020 
 
 select_query = """
 SELECT SUM(valeur) as population_region, region.nom_region 
@@ -18,10 +17,6 @@ GROUP BY region.nom_region;
 
 select_query = """
 SELECT * from statistiques_mariages_age;
-"""
-
-select_query = """
-SELECT * FROM commune_population;
 """
 
 cur.execute(select_query)
