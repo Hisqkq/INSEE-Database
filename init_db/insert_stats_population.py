@@ -1,6 +1,10 @@
 import pandas as pd
 from db import insert_dataframe_into_table
 
+def not_COM(file_path="data/CDR/v_commune_2023.csv"):
+    df = pd.read_csv(file_path, sep=',', dtype={'TYPECOM': str})
+    return df[~df['TYPECOM'].isin(['COM'])]['COM']
+
 def filter_stat_mapping(stat_mapping, start_year, end_year):
     return {
         key: value for key, value in stat_mapping.items()
@@ -92,6 +96,8 @@ def fill_tables_population(filepath = 'data/statistiques/population/base-cc-seri
     }
     filtered_stat_mapping = filter_stat_mapping(stat_mapping, start_year, end_year)
     df = read_and_prepare_data(filepath)
+    # On garde les codgeo du df qui ne sont pas dans la liste not_COM()
+    df = df[~df['CODGEO'].isin(not_COM())]
     all_stat_df = generate_statistics_dfs(df, filtered_stat_mapping)
     all_stat_df['codgeo'] = all_stat_df['codgeo'].astype(str)
     all_stat_df['annee'] = all_stat_df['annee'].astype(str).astype(int)
